@@ -1,16 +1,17 @@
 name             'ark'
-maintainer       'Bryan W. Berry'
-maintainer_email 'bryan.berry@gmail.com'
+maintainer       'Franklin Webber'
+maintainer_email 'frank@chef.io'
 license          'Apache 2.0'
-description      'Installs/Configures ark'
+description      'Provides a custom resource for installing runtime artifacts in a predictable fashion'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.9.1'
+version          '1.0.1'
 
-%w( debian ubuntu centos redhat fedora windows ).each do |os|
+recipe 'ark::default', 'Installs packages needed by the custom resource'
+
+%w(ubuntu debian redhat centos suse scientific oracle amazon windows mac_os_x smartos freebsd).each do |os|
   supports os
 end
 
-recipe 'ark::default', 'Installs and configures ark'
-
-depends 'windows'
-depends '7-zip'
+depends 'build-essential'
+depends 'windows' # for windows os
+depends 'seven_zip' # for windows os
