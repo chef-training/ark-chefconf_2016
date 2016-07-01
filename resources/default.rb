@@ -18,13 +18,9 @@
 # limitations under the License.
 #
 
-def initialize(name, run_context = nil)
-  super
-  @resource_name = :ark
-  @allowed_actions.push(:install, :dump, :cherry_pick, :put, :install_with_make, :configure, :setup_py_build, :setup_py_install, :setup_py, :unzip)
-  @action = :install
-  @provider = Chef::Provider::Ark
-end
+actions :install, :dump, :cherry_pick, :put, :install_with_make, :configure, :setup_py_build, :setup_py_install, :setup_py, :unzip
+
+default_action :install
 
 attr_accessor :path, :release_file, :prefix_bin, :prefix_root, :home_dir, :extension, :version
 
