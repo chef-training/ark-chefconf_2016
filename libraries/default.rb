@@ -3,7 +3,6 @@
 module Opscode
   module Ark
     module ProviderHelpers
-      private
 
       def unpack_type
         case parse_file_extension
