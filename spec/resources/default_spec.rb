@@ -142,5 +142,4 @@ describe 'ark' do
   #   let(:example_recipe) { 'ark_spec::setup_py' }
   #   it 'generates the expected resources with the expected actions and notifications'
   # end
-
 end

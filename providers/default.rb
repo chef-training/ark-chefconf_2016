@@ -1,11 +1,11 @@
 #
-# Cookbook Name:: ark
+# Cookbook:: ark
 # Provider:: Ark
 #
 # Author:: Bryan W. Berry <bryan.berry@gmail.com>
 # Author:: Sean OMeara <someara@opscode.com
-# Copyright 2012, Bryan W. Berry
-# Copyright 2013, Opscode, Inc.
+# Copyright:: 2012, Bryan W. Berry
+# Copyright:: 2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,8 +19,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-use_inline_resources if defined?(use_inline_resources)
 include ::Opscode::Ark::ProviderHelpers
 
 # From resources/default.rb
@@ -68,7 +66,7 @@ action :install do
   end
 
   # usually on windows there is no central directory with executables where the applciations are linked
-  unless node['platform_family'] == 'windows'
+  unless platform_family?('windows')
     # symlink binaries
     new_resource.has_binaries.each do |bin|
       link ::File.join(new_resource.prefix_bin, ::File.basename(bin)) do
@@ -89,7 +87,7 @@ action :install do
       group 'root'
       mode '0755'
       cookbook 'ark'
-      variables(:directory => "#{new_resource.path}/bin")
+      variables(directory: "#{new_resource.path}/bin")
       only_if { new_resource.append_env_path }
     end
   end
